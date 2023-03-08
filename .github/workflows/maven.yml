@@ -29,3 +29,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Analyze with Sonarqube
+      run:  mvn clean verify sonar:sonar   -Dsonar.projectKey=java-junit   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=sqp_83d402f0cd4cd7e3cf7014eb9ee696197acee537
+      env:
+          GITHUB_TOKEN: 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  # Needed to get PR information, if any
+          SONAR_PROJECTKEY: java-junit
+          SONAR_TOKEN: sqp_83d402f0cd4cd7e3cf7014eb9ee696197acee537
